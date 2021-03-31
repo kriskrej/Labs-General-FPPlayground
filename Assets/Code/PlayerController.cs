@@ -18,10 +18,10 @@ public class PlayerController : MonoBehaviour {
         HandleVerticalRotation();
 
         if (IsGrounded())
-            howManyTimesPlayerCanJump = 3;
+            howManyTimesPlayerCanJump = 1;
 
         if (howManyTimesPlayerCanJump > 0 && Input.GetKeyDown(KeyCode.Space)) {
-            rigidbody.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
+            rigidbody.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
             howManyTimesPlayerCanJump--;
         }
 
@@ -54,6 +54,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     bool IsGrounded() {
-        return Physics.Raycast(transform.position, Vector3.down, 4);
+        return Physics.Raycast(transform.position, Vector3.down, 1.1f) && rigidbody.velocity.y <= 0;
     }
 }
